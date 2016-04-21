@@ -1,4 +1,7 @@
 
+enable_service q-bgp
+enable_service q-bgp-agt
+
 #BGP binary and config information
 AGENT_BGP_BINARY=${AGENT_BGP_BINARY:-"$NEUTRON_BIN_DIR/neutron-bgp-dragent"}
 Q_BGP_DRAGENT_CONF_FILE=${Q_BGP_DRAGENT_CONF_FILE:-"$NEUTRON_CONF_DIR/bgp_dragent.ini"}

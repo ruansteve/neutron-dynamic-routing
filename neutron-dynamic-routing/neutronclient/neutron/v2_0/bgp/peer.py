@@ -19,7 +19,11 @@ from neutronclient.common import exceptions
 from neutronclient.common import utils
 from neutronclient.common import validators
 from neutronclient.neutron import v2_0 as neutronv20
+from neutron-dynamic-routing.neutronclient.neutron.v2_0.bgp import speaker
 
+BGP_PEER_RESOURCE = 'bgp_peer'
+BGP_PEERS_PATH = '/bgp-peers'
+BGP_PEER_PATH = '/bgp-peers/%s'
 
 def get_bgp_peer_id(client, id_or_name):
     return neutronv20.find_resourceid_by_name_or_id(client,
@@ -30,8 +34,8 @@ def get_bgp_peer_id(client, id_or_name):
 def validate_peer_attributes(parsed_args):
     # Validate AS number
     validators.validate_int_range(parsed_args, 'remote_as',
-                                  neutronv20.bgp.speaker.MIN_AS_NUM,
-                                  neutronv20.bgp.speaker.MAX_AS_NUM)
+                                  speaker.MIN_AS_NUM,
+                                  speaker.MAX_AS_NUM)
     # Validate password
     if parsed_args.auth_type != 'none' and parsed_args.password is None:
         raise exceptions.CommandError(_('Must provide password if auth-type '
@@ -40,26 +44,36 @@ def validate_peer_attributes(parsed_args):
         raise exceptions.CommandError(_('Must provide auth-type if password '
                                         'is specified.'))
 
+class BGPPeer(extension.NeutronClientExtension):
+    resource = BGP_PEER_RESOURCE
+    resource_plural = '%ss' % resource
 
-class ListPeers(neutronv20.ListCommand):
+    #object_path = '/%s' % resource_plural
+    #resource_path = '/%s/%%s' % resource_plural
+    object_path = BGP_PEERS_PATH
+    resource_path = BGP_PEER_PATH
+
+    versions = ['2.0']
+
+class ListPeers(BGPPeer, extension.ClientExtensionList):
     """List BGP peers."""
 
-    resource = 'bgp_peer'
+    shell_command = 'bgp-peer-list'
     list_columns = ['id', 'name', 'peer_ip', 'remote_as']
     pagination_support = True
     sorting_support = True
 
 
-class ShowPeer(neutronv20.ShowCommand):
+class ShowPeer(BGPPeer, extension.ClientExtensionShow):
     """Show information of a given BGP peer."""
 
-    resource = 'bgp_peer'
+    shell_command = 'bgp-peer-show'
 
 
-class CreatePeer(neutronv20.CreateCommand):
+class CreatePeer(BGPPeer, extension.ClientExtensionCreate):
     """Create a BGP Peer."""
 
-    resource = 'bgp_peer'
+    shell_command = 'bgp-peer-create'
 
     def add_known_arguments(self, parser):
         parser.add_argument(
@@ -77,8 +91,8 @@ class CreatePeer(neutronv20.CreateCommand):
             metavar='PEER_REMOTE_AS',
             help=_('Peer AS number. (Integer in [%(min_val)s, %(max_val)s] '
                    'is allowed.)') %
-            {'min_val': neutronv20.bgp.speaker.MIN_AS_NUM,
-             'max_val': neutronv20.bgp.speaker.MAX_AS_NUM})
+            {'min_val': speaker.MIN_AS_NUM,
+             'max_val': speaker.MAX_AS_NUM})
         parser.add_argument(
             '--auth-type',
             metavar='PEER_AUTH_TYPE',
@@ -101,10 +115,10 @@ class CreatePeer(neutronv20.CreateCommand):
         return {self.resource: body}
 
 
-class UpdatePeer(neutronv20.UpdateCommand):
+class UpdatePeer(BGPPeer, extension.ClientExtensionUpdate):
     """Update BGP Peer's information."""
 
-    resource = 'bgp_peer'
+    shell_command = 'bgp-peer-update'
 
     def add_known_arguments(self, parser):
         parser.add_argument(
@@ -121,7 +135,7 @@ class UpdatePeer(neutronv20.UpdateCommand):
         return {self.resource: body}
 
 
-class DeletePeer(neutronv20.DeleteCommand):
+class DeletePeer(BGPPeer, extension.ClientExtensionDelete):
     """Delete a BGP peer."""
 
-    resource = 'bgp_peer'
+    shell_command = 'bgp-peer-delete'

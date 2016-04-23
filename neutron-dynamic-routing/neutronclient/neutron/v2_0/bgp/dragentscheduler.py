@@ -17,8 +17,35 @@
 from __future__ import print_function
 
 from neutronclient._i18n import _
+from neutronclient.common import extension
 from neutronclient.neutron import v2_0 as neutronV20
-from neutronclient.neutron.v2_0.bgp import speaker as bgp_speaker
+from neutron-dynamic-routing.neutronclient.neutron.v2_0.bgp import speaker
+
+
+BGP_DRINSTANCES = "/bgp-drinstances"
+BGP_DRINSTANCE = "/bgp-drinstance/%s"
+BGP_DRAGENTS = "/bgp-dragents"
+BGP_DRAGENT = "/bgp-dragents/%s"
+
+def add_bgp_speaker_to_dragent(client, bgp_dragent, body):
+    """Adds a BGP speaker to Dynamic Routing agent."""
+    return client.post((client.agent_path + BGP_DRINSTANCES)
+                       % bgp_dragent, body=body)
+
+def remove_bgp_speaker_from_dragent(client, bgp_dragent, bgpspeaker_id):
+    """Removes a BGP speaker from Dynamic Routing agent."""
+    return client.delete((client.agent_path + BGP_DRINSTANCES + "/%s")
+                         % (bgp_dragent, bgpspeaker_id))
+
+def list_bgp_speaker_on_dragent(client, bgp_dragent, **_params):
+    """Fetches a list of BGP speakers hosted by Dynamic Routing agent."""
+    return client.get((client.agent_path + BGP_DRINSTANCES)
+                      % bgp_dragent, params=_params)
+
+def list_dragents_hosting_bgp_speaker(client, bgp_speaker, **_params):
+    """Fetches a list of Dynamic Routing agents hosting a BGP speaker."""
+    return client.get((client.bgp_speaker_path + BGP_DRAGENTS)
+                      % bgp_speaker, params=_params)
 
 
 def add_common_args(parser):
@@ -30,8 +57,10 @@ def add_common_args(parser):
                         help=_('ID or name of the BGP speaker.'))
 
 
-class AddBGPSpeakerToDRAgent(neutronV20.NeutronCommand):
+class AddBGPSpeakerToDRAgent(extension.NeutronClientExtension):
     """Add a BGP speaker to a Dynamic Routing agent."""
+    
+    shell_command = 'bgp-dragent-speaker-add'
 
     def get_parser(self, prog_name):
         parser = super(AddBGPSpeakerToDRAgent, self).get_parser(prog_name)
@@ -40,16 +69,18 @@ class AddBGPSpeakerToDRAgent(neutronV20.NeutronCommand):
 
     def take_action(self, parsed_args):
         neutron_client = self.get_client()
-        _speaker_id = bgp_speaker.get_bgp_speaker_id(neutron_client,
-                                                     parsed_args.bgp_speaker)
-        neutron_client.add_bgp_speaker_to_dragent(
+        _speaker_id = speaker.get_bgp_speaker_id(neutron_client,
+                                                 parsed_args.bgp_speaker)
+        add_bgp_speaker_to_dragent(neutron_client,
             parsed_args.dragent_id, {'bgp_speaker_id': _speaker_id})
         print(_('Associated BGP speaker %s to the Dynamic Routing agent.')
               % parsed_args.bgp_speaker, file=self.app.stdout)
 
 
-class RemoveBGPSpeakerFromDRAgent(neutronV20.NeutronCommand):
+class RemoveBGPSpeakerFromDRAgent(extension.NeutronClientExtension):
     """Removes a BGP speaker from a Dynamic Routing agent."""
+
+    shell_command = 'bgp-dragent-speaker-remove'
 
     def get_parser(self, prog_name):
         parser = super(RemoveBGPSpeakerFromDRAgent, self).get_parser(
@@ -59,20 +90,22 @@ class RemoveBGPSpeakerFromDRAgent(neutronV20.NeutronCommand):
 
     def take_action(self, parsed_args):
         neutron_client = self.get_client()
-        _speaker_id = bgp_speaker.get_bgp_speaker_id(neutron_client,
-                                                     parsed_args.bgp_speaker)
-        neutron_client.remove_bgp_speaker_from_dragent(parsed_args.dragent_id,
+        _speaker_id = speaker.get_bgp_speaker_id(neutron_client,
+                                                 parsed_args.bgp_speaker)
+        remove_bgp_speaker_from_dragent(neutron_client, parsed_args.dragent_id,
                                                        _speaker_id)
         print(_('Disassociated BGP speaker %s from the '
                 'Dynamic Routing agent.')
               % parsed_args.bgp_speaker, file=self.app.stdout)
 
 
-class ListBGPSpeakersOnDRAgent(neutronV20.ListCommand):
+class ListBGPSpeakersOnDRAgent(extension.ClientExtensionList):
     """List BGP speakers hosted by a Dynamic Routing agent."""
+    
+    shell_command = 'bgp-speaker-list-on-dragent'
 
     list_columns = ['id', 'name', 'local_as', 'ip_version']
-    resource = 'bgp_speaker'
+    resource = speaker.BGP_SPEAKER_RESOURCE
 
     def get_parser(self, prog_name):
         parser = super(ListBGPSpeakersOnDRAgent,
@@ -84,13 +117,15 @@ class ListBGPSpeakersOnDRAgent(neutronV20.ListCommand):
         return parser
 
     def call_server(self, neutron_client, search_opts, parsed_args):
-        data = neutron_client.list_bgp_speaker_on_dragent(
+        data = list_bgp_speaker_on_dragent(neutron_client,
             parsed_args.dragent_id, **search_opts)
         return data
 
 
-class ListDRAgentsHostingBGPSpeaker(neutronV20.ListCommand):
+class ListDRAgentsHostingBGPSpeaker(extension.ClientExtensionList):
     """List Dynamic Routing agents hosting a BGP speaker."""
+
+    shell_command = 'bgp-dragent-list-hosting-speaker'
 
     resource = 'agent'
     _formatters = {}
@@ -110,8 +145,8 @@ class ListDRAgentsHostingBGPSpeaker(neutronV20.ListCommand):
             agent['alive'] = ":-)" if agent['alive'] else 'xxx'
 
     def call_server(self, neutron_client, search_opts, parsed_args):
-        _speaker_id = bgp_speaker.get_bgp_speaker_id(neutron_client,
+        _speaker_id = speaker.get_bgp_speaker_id(neutron_client,
                                                      parsed_args.bgp_speaker)
         search_opts['bgp_speaker'] = _speaker_id
-        data = neutron_client.list_dragents_hosting_bgp_speaker(**search_opts)
+        data = list_dragents_hosting_bgp_speaker(neutron_client, **search_opts)
         return data

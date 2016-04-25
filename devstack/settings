@@ -8,3 +8,7 @@ Q_BGP_DRAGENT_CONF_FILE=${Q_BGP_DRAGENT_CONF_FILE:-"$NEUTRON_CONF_DIR/bgp_dragen
 BGP_ROUTER_ID=${BGP_ROUTER_ID:-}
 
 RYU_BGP_SPEAKER_DRIVER="neutron.services.bgp.driver.ryu.driver.RyuBgpDriver"
+
+# Config files
+NEUTRON_DYNAMIC_ROUTING_DIR=$DEST/neutron_dynamic_routing
+

@@ -4,6 +4,12 @@ source $LIBDIR/bgp
 
 if [[ "$1" == "stack" ]]; then
     case "$2" in
+        pre-install)
+            if is_service_enabled q-bgp; then
+                echo "bgp pre-install"
+                generate_config_files
+            fi
+            ;;
         install)
             if is_service_enabled q-bgp; then
                 configure_bgp

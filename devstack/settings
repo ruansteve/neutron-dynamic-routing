@@ -7,7 +7,7 @@ AGENT_BGP_BINARY=${AGENT_BGP_BINARY:-"$NEUTRON_BIN_DIR/neutron-bgp-dragent"}
 Q_BGP_DRAGENT_CONF_FILE=${Q_BGP_DRAGENT_CONF_FILE:-"$NEUTRON_CONF_DIR/bgp_dragent.ini"}
 BGP_ROUTER_ID=${BGP_ROUTER_ID:-}
 
-BGP_PLUGIN=${BGP_PLUGIN:-"neutron_dynamic_routing.neutron.services.bgp.bgp_plugin:BgpPlugin"}
+BGP_PLUGIN=${BGP_PLUGIN:-"neutron_dynamic_routing.neutron_dynamic_routing.neutron.services.bgp.bgp_plugin"}
 
 RYU_BGP_SPEAKER_DRIVER="neutron.services.bgp.driver.ryu.driver.RyuBgpDriver"
 

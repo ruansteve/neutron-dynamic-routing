@@ -18,9 +18,9 @@ from oslo_config import cfg
 from ryu.services.protocols.bgp import bgpspeaker
 from ryu.services.protocols.bgp.rtconf.neighbors import CONNECT_MODE_ACTIVE
 
-from neutron.services.bgp.agent import config as bgp_config
-from neutron.services.bgp.driver import exceptions as bgp_driver_exc
-from neutron.services.bgp.driver.ryu import driver as ryu_driver
+from neutron_dynamic_routing.neutron.services.bgp.agent import config as bgp_config
+from neutron_dynamic_routing.neutron.services.bgp.driver import exceptions as bgp_driver_exc
+from neutron_dynamic_routing.neutron.services.bgp.driver.ryu import driver as ryu_driver
 from neutron.tests import base
 
 # Test variables for BGP Speaker

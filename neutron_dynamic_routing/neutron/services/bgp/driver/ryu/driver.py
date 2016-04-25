@@ -17,9 +17,9 @@ from oslo_log import log as logging
 from ryu.services.protocols.bgp import bgpspeaker
 from ryu.services.protocols.bgp.rtconf.neighbors import CONNECT_MODE_ACTIVE
 
-from neutron.services.bgp.driver import base
-from neutron.services.bgp.driver import exceptions as bgp_driver_exc
-from neutron.services.bgp.driver import utils
+from neutron_dynamic_routing.neutron.services.bgp.driver import base
+from neutron_dynamic_routing.neutron.services.bgp.driver import exceptions as bgp_driver_exc
+from neutron_dynamic_routing.neutron.services.bgp.driver import utils
 from neutron._i18n import _LE, _LI
 
 LOG = logging.getLogger(__name__)

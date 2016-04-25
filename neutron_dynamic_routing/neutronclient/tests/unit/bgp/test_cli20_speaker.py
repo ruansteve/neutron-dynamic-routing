@@ -19,7 +19,7 @@ import sys
 from mox3 import mox
 
 from neutronclient.common import exceptions
-from neutronclient.neutron.v2_0.bgp import speaker as bgp_speaker
+from neutron_dynamic_routing.neutronclient.neutron.v2_0.bgp import speaker as bgp_speaker
 from neutronclient.tests.unit import test_cli20
 
 

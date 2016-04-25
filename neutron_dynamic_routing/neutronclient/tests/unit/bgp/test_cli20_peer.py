@@ -17,8 +17,8 @@
 import sys
 
 from neutronclient.common import exceptions
-from neutronclient.neutron.v2_0.bgp import peer as bgp_peer
-from neutronclient.neutron.v2_0.bgp import speaker as bgp_speaker
+from neutron_dynamic_routing.neutronclient.neutron.v2_0.bgp import peer as bgp_peer
+from neutron_dynamic_routing.neutronclient.neutron.v2_0.bgp import speaker as bgp_speaker
 from neutronclient.tests.unit import test_cli20
 
 

@@ -24,7 +24,7 @@ from neutron.api.v2 import base
 from neutron.api.v2 import resource
 from neutron.common import exceptions
 from neutron.extensions import agent
-from neutron.extensions import bgp as bgp_ext
+from neutron_dynamic_routing.neutron.extensions import bgp as bgp_ext
 from neutron._i18n import _, _LE
 from neutron import manager
 from neutron import wsgi

@@ -17,19 +17,19 @@ from oslo_config import cfg
 from oslo_log import log as logging
 from oslo_utils import importutils
 
-from neutron.api.rpc.agentnotifiers import bgp_dr_rpc_agent_api
-from neutron.api.rpc.handlers import bgp_speaker_rpc as bs_rpc
+from neutron_dynamic_routing.neutron.api.rpc.agentnotifiers import bgp_dr_rpc_agent_api
+from neutron_dynamic_routing.neutron.api.rpc.handlers import bgp_speaker_rpc as bs_rpc
 from neutron.callbacks import events
 from neutron.callbacks import registry
 from neutron.callbacks import resources
 from neutron.common import constants as n_const
 from neutron.common import rpc as n_rpc
 from neutron import context
-from neutron.db import bgp_db
-from neutron.db import bgp_dragentscheduler_db
-from neutron.extensions import bgp as bgp_ext
-from neutron.extensions import bgp_dragentscheduler as dras_ext
-from neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.db import bgp_db
+from neutron_dynamic_routing.neutron.db import bgp_dragentscheduler_db
+from neutron_dynamic_routing.neutron.extensions import bgp as bgp_ext
+from neutron_dynamic_routing.neutron.extensions import bgp_dragentscheduler as dras_ext
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
 from neutron.services import service_base
 
 PLUGIN_NAME = bgp_ext.BGP_EXT_ALIAS + '_svc_plugin'

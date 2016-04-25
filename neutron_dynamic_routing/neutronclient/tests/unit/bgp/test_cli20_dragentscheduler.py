@@ -16,7 +16,7 @@
 
 import sys
 
-from neutronclient.neutron.v2_0.bgp import dragentscheduler as bgp_drsched
+from neutron_dynamic_routing.neutronclient.neutron.v2_0.bgp import dragentscheduler as bgp_drsched
 from neutronclient.tests.unit import test_cli20
 from neutronclient.tests.unit import test_cli20_agentschedulers as test_as
 

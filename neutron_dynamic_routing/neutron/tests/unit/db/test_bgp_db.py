@@ -18,12 +18,12 @@ from oslo_utils import uuidutils
 
 from neutron.api.v2 import attributes as attrs
 from neutron.common import exceptions as n_exc
-from neutron.extensions import bgp
+from neutron_dynamic_routing.neutron.extensions import bgp
 from neutron.extensions import external_net
 from neutron.extensions import portbindings
 from neutron import manager
 from neutron.plugins.common import constants as p_const
-from neutron.services.bgp import bgp_plugin
+from neutron_dynamic_routing.neutron.services.bgp import bgp_plugin
 from neutron.tests.unit.plugins.ml2 import test_plugin
 
 _uuid = uuidutils.generate_uuid

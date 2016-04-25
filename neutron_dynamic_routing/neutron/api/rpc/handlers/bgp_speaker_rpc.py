@@ -15,7 +15,7 @@
 
 import oslo_messaging
 
-from neutron.extensions import bgp as bgp_ext
+from neutron_dynamic_routing.neutron.extensions import bgp as bgp_ext
 from neutron import manager
 
 

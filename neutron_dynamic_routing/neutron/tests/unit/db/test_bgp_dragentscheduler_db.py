@@ -17,13 +17,13 @@ from oslo_utils import importutils
 
 from neutron.api.v2 import attributes
 from neutron import context
-from neutron.db import bgp_db
-from neutron.db import bgp_dragentscheduler_db as bgp_dras_db
+from neutron_dynamic_routing.neutron.db import bgp_db
+from neutron_dynamic_routing.neutron.db import bgp_dragentscheduler_db as bgp_dras_db
 from neutron.extensions import agent
-from neutron.extensions import bgp
-from neutron.extensions import bgp_dragentscheduler as bgp_dras_ext
+from neutron_dynamic_routing.neutron.extensions import bgp
+from neutron_dynamic_routing.neutron.extensions import bgp_dragentscheduler as bgp_dras_ext
 from neutron import manager
-from neutron.tests.unit.db import test_bgp_db
+from neutron_dynamic_routing.neutron.tests.unit.db import test_bgp_db
 from neutron.tests.unit.db import test_db_base_plugin_v2 as test_db_base_plugin
 from neutron.tests.unit.extensions import test_agent
 

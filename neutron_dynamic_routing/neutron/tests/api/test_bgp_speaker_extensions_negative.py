@@ -15,7 +15,7 @@
 import netaddr
 from tempest.lib import exceptions as lib_exc
 
-from neutron.tests.api import test_bgp_speaker_extensions as test_base
+from neutron_dynamic_routing.neutron.tests.api import test_bgp_speaker_extensions as test_base
 from tempest import test
 
 

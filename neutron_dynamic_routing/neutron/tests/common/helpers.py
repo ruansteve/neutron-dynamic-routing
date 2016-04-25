@@ -23,9 +23,9 @@ import neutron
 from neutron.common import constants
 from neutron.common import topics
 from neutron import context
-from neutron.db import agents_db
+from neutron_dynamic_routing.neutron.db import agents_db
 from neutron.db import common_db_mixin
-from neutron.services.bgp.common import constants as bgp_const
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_const
 
 HOST = 'localhost'
 DEFAULT_AZ = 'nova'

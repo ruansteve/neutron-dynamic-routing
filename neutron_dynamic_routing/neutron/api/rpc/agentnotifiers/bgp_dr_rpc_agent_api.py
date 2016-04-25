@@ -16,7 +16,7 @@
 import oslo_messaging
 
 from neutron.common import rpc as n_rpc
-from neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
 
 
 class BgpDrAgentNotifyApi(object):

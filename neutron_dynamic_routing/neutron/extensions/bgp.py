@@ -19,7 +19,7 @@ from neutron.api import extensions
 from neutron.api.v2 import attributes as attr
 from neutron.api.v2 import resource_helper as rh
 from neutron.common import exceptions
-from neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
 
 BGP_EXT_ALIAS = 'bgp'
 BGP_SPEAKER_RESOURCE_NAME = 'bgp-speaker'

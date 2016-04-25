@@ -31,8 +31,8 @@ from neutron import context
 from neutron.extensions import bgp as bgp_ext
 from neutron._i18n import _, _LE, _LI, _LW
 from neutron import manager
-from neutron.services.bgp.common import constants as bgp_consts
-from neutron.services.bgp.driver import exceptions as driver_exc
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.services.bgp.driver import exceptions as driver_exc
 
 LOG = logging.getLogger(__name__)
 

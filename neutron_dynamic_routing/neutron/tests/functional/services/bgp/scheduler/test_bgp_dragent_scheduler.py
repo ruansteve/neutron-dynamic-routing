@@ -17,10 +17,10 @@ import testscenarios
 
 from neutron import context
 from neutron.db import agents_db
-from neutron.db import bgp_db
-from neutron.db import bgp_dragentscheduler_db as bgp_dras_db
+from neutron_dynamic_routing.neutron.db import bgp_db
+from neutron_dynamic_routing.neutron.db import bgp_dragentscheduler_db as bgp_dras_db
 from neutron.db import common_db_mixin
-from neutron.services.bgp.scheduler import bgp_dragent_scheduler as bgp_dras
+from neutron_dynamic_routing.neutron.services.bgp.scheduler import bgp_dragent_scheduler as bgp_dras
 from neutron.tests.common import helpers
 from neutron.tests.unit import testlib_api
 

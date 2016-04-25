@@ -34,7 +34,7 @@ from neutron.db import l3_attrs_db
 from neutron.db import l3_db
 from neutron.db import model_base
 from neutron.db import models_v2
-from neutron.extensions import bgp as bgp_ext
+from neutron_dynamic_routing.neutron.extensions import bgp as bgp_ext
 from neutron.plugins.ml2 import models as ml2_models
 
 

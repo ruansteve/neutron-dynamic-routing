@@ -22,8 +22,8 @@ from neutron.agent.common import config
 from neutron.agent.linux import external_process
 from neutron.common import config as common_config
 from neutron import service as neutron_service
-from neutron.services.bgp.agent import config as bgp_dragent_config
-from neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.services.bgp.agent import config as bgp_dragent_config
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
 
 
 def register_options():

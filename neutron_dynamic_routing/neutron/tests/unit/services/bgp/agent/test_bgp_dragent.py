@@ -24,9 +24,9 @@ import testtools
 
 from neutron.common import config as common_config
 from neutron import context
-from neutron.services.bgp.agent import bgp_dragent
-from neutron.services.bgp.agent import config as bgp_config
-from neutron.services.bgp.agent import entry
+from neutron_dynamic_routing.neutron.services.bgp.agent import bgp_dragent
+from neutron_dynamic_routing.neutron.services.bgp.agent import config as bgp_config
+from neutron_dynamic_routing.neutron.services.bgp.agent import entry
 from neutron.tests import base
 
 HOSTNAME = 'hostname'

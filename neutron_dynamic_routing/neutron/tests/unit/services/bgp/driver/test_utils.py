@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from neutron.services.bgp.driver import utils
+from neutron_dynamic_routing.neutron.services.bgp.driver import utils
 from neutron.tests import base
 
 FAKE_LOCAL_AS = 12345

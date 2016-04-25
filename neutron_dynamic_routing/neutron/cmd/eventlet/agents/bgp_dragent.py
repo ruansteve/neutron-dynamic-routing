@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from neutron.services.bgp.agent import entry as bgp_dragent
+from neutron_dynamic_routing.neutron.services.bgp.agent import entry as bgp_dragent
 
 
 def main():

@@ -15,7 +15,7 @@
 
 import mock
 
-from neutron.api.rpc.handlers import bgp_speaker_rpc
+from neutron_dynamic_routing.neutron.api.rpc.handlers import bgp_speaker_rpc
 from neutron.tests import base
 
 

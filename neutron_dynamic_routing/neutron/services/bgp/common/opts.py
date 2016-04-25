@@ -15,7 +15,7 @@
 
 import itertools
 
-import neutron.services.bgp.agent.config
+import neutron_dynamic_routing.neutron.services.bgp.agent.config
 
 
 def list_bgp_agent_opts():

@@ -19,12 +19,12 @@ from sqlalchemy.orm import exc
 from sqlalchemy import sql
 
 from neutron.db import agents_db
-from neutron.db import bgp_db
-from neutron.db import bgp_dragentscheduler_db as bgp_dras_db
+from neutron_dynamic_routing.neutron.db import bgp_db
+from neutron_dynamic_routing.neutron.db import bgp_dragentscheduler_db as bgp_dras_db
 from neutron._i18n import _LI, _LW
 from neutron.scheduler import base_resource_filter
 from neutron.scheduler import base_scheduler
-from neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
 
 LOG = logging.getLogger(__name__)
 BGP_SPEAKER_PER_DRAGENT = 1

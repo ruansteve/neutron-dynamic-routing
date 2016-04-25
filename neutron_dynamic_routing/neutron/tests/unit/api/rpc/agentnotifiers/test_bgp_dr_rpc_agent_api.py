@@ -15,7 +15,7 @@
 
 import mock
 
-from neutron.api.rpc.agentnotifiers import bgp_dr_rpc_agent_api
+from neutron_dynamic_routing.neutron.api.rpc.agentnotifiers import bgp_dr_rpc_agent_api
 from neutron import context
 from neutron.tests import base
 

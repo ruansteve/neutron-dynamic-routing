@@ -15,8 +15,8 @@
 
 import six
 
-from neutron.services.bgp.common import constants as bgp_consts
-from neutron.services.bgp.driver import exceptions as bgp_driver_exc
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.services.bgp.driver import exceptions as bgp_driver_exc
 
 
 # Parameter validation functions provided are provided by the base.

@@ -25,8 +25,8 @@ from neutron._i18n import _LW
 from neutron.db import agents_db
 from neutron.db import agentschedulers_db as as_db
 from neutron.db import model_base
-from neutron.extensions import bgp_dragentscheduler as bgp_dras_ext
-from neutron.services.bgp.common import constants as bgp_consts
+from neutron_dynamic_routing.neutron.extensions import bgp_dragentscheduler as bgp_dras_ext
+from neutron_dynamic_routing.neutron.services.bgp.common import constants as bgp_consts
 
 
 LOG = logging.getLogger(__name__)

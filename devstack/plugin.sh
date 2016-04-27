@@ -7,7 +7,7 @@ if [[ "$1" == "stack" ]]; then
         pre-install)
             if is_service_enabled q-bgp; then
                 echo "bgp pre-install"
-                generate_config_files
+                #generate_config_files
             fi
             ;;
         install)
@@ -17,6 +17,7 @@ if [[ "$1" == "stack" ]]; then
             ;;
         post-config)
             if is_service_enabled q-bgp && is_service_enabled q-bgp-agt; then
+                generate_config_files
                 configure_bgp_dragent
             fi
             ;;

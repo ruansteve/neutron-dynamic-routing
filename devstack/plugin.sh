@@ -1,4 +1,4 @@
-LIBDIR=$DEST/neutron_dynamic_routing/devstack/lib
+LIBDIR=$DEST/neutron-dynamic-routing/devstack/lib
 
 source $LIBDIR/bgp
 

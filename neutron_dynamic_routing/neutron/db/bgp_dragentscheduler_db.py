@@ -35,7 +35,7 @@ LOG = logging.getLogger(__name__)
 BGP_DRAGENT_SCHEDULER_OPTS = [
     cfg.StrOpt(
         'bgp_drscheduler_driver',
-        default='neutron.services.bgp.scheduler'
+        default='neutron_dynamic_routing.neutron.services.bgp.scheduler'
                 '.bgp_dragent_scheduler.ChanceScheduler',
         help=_('Driver used for scheduling BGP speakers to BGP DrAgent'))
 ]

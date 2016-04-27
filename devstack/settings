@@ -12,5 +12,5 @@ BGP_PLUGIN=${BGP_PLUGIN:-"neutron_dynamic_routing.neutron.services.bgp.bgp_plugi
 RYU_BGP_SPEAKER_DRIVER="neutron.services.bgp.driver.ryu.driver.RyuBgpDriver"
 
 # Config files
-NEUTRON_DYNAMIC_ROUTING_DIR=$DEST/neutron_dynamic_routing
+NEUTRON_DYNAMIC_ROUTING_DIR=$DEST/neutron-dynamic-routing
 

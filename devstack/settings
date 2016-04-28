@@ -9,7 +9,7 @@ BGP_ROUTER_ID=${BGP_ROUTER_ID:-}
 
 BGP_PLUGIN=${BGP_PLUGIN:-"neutron_dynamic_routing.services.bgp.bgp_plugin.BgpPlugin"}
 
-RYU_BGP_SPEAKER_DRIVER="neutron.services.bgp.driver.ryu.driver.RyuBgpDriver"
+RYU_BGP_SPEAKER_DRIVER="neutron_dynamic_routing.services.bgp.driver.ryu.driver.RyuBgpDriver"
 
 # Config files
 NEUTRON_DYNAMIC_ROUTING_DIR=$DEST/neutron-dynamic-routing

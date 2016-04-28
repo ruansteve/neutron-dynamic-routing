@@ -28,7 +28,7 @@ from neutron.common import rpc as n_rpc
 from neutron.common import topics
 from neutron.common import utils
 from neutron import context
-from neutron.extensions import bgp as bgp_ext
+from neutron_dynamic_routing.extensions import bgp as bgp_ext
 from neutron._i18n import _, _LE, _LI, _LW
 from neutron import manager
 from neutron_dynamic_routing.services.bgp.common import constants as bgp_consts

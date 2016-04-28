@@ -42,6 +42,6 @@ def main():
         binary='neutron-bgp-dragent',
         topic=bgp_consts.BGP_DRAGENT,
         report_interval=cfg.CONF.AGENT.report_interval,
-        manager='neutron.services.bgp.agent.bgp_dragent.'
+        manager='neutron_dynamic_routing.services.bgp.agent.bgp_dragent.'
                 'BgpDrAgentWithStateReport')
     service.launch(cfg.CONF, server).wait()

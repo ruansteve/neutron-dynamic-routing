@@ -3,6 +3,7 @@ enable_service q-bgp
 enable_service q-bgp-agt
 
 #BGP binary and config information
+NEUTRON_DYNAMIC_ROUTING_DIR=$DEST/neutron_dynamic_routing
 AGENT_BGP_BINARY=${AGENT_BGP_BINARY:-"$NEUTRON_BIN_DIR/neutron-bgp-dragent"}
 Q_BGP_DRAGENT_CONF_FILE=${Q_BGP_DRAGENT_CONF_FILE:-"$NEUTRON_CONF_DIR/bgp_dragent.ini"}
 BGP_ROUTER_ID=${BGP_ROUTER_ID:-}
@@ -10,7 +11,4 @@ BGP_ROUTER_ID=${BGP_ROUTER_ID:-}
 BGP_PLUGIN=${BGP_PLUGIN:-"neutron_dynamic_routing.services.bgp.bgp_plugin.BgpPlugin"}
 
 RYU_BGP_SPEAKER_DRIVER="neutron_dynamic_routing.services.bgp.driver.ryu.driver.RyuBgpDriver"
-
-# Config files
-NEUTRON_DYNAMIC_ROUTING_DIR=$DEST/neutron-dynamic-routing
 
